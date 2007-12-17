@@ -15,7 +15,6 @@ Patch1:		xscorch-0.2.0-non-crazy-scoring--standard.patch.bz2
 Url:		http://chaos2.org/xscorch/
 License:	GPL
 Group:		Games/Arcade
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libmikmod-devel gtk+1.2-devel X11-devel libglib-devel libxpm-devel
 
 %description 
