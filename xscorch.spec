@@ -38,16 +38,6 @@ power, and you hope to destroy their tank before they destroy yours.
 rm -rf %{buildroot}
 %makeinstall_std
 
-install -d %{buildroot}%{_menudir}
-cat <<EOF > %{buildroot}%{_menudir}/%{name}
-?package(%{name}):command="%{_gamesbindir}/%{name}" \
-		icon=%{name}.png \
-		needs="x11" \
-		section="More Applications/Games/Arcade" \
-		title="XScorch"\
-		longtitle="%{Summary}" \
-		xdg="true"
-EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
@@ -85,6 +75,5 @@ rm -rf %{buildroot}
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_datadir}/applications/*
-%{_menudir}/%{name}
 %doc AUTHORS ChangeLog NEWS README TODO doc/AI doc/NETWORK doc/NOTES
 
