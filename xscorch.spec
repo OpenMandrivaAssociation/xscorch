@@ -1,6 +1,6 @@
 %define	name	xscorch
 %define version 0.2.0
-%define release 5
+%define release 6
 %define	Summary	Clone of Scorched Earth
 
 Summary:	%{Summary}
@@ -11,9 +11,11 @@ Source0:	%{name}-%{version}.tar.bz2
 Source11:	xscorch-16x16.png
 Source12:	xscorch-32x32.png
 Source13:	xscorch-48x48.png
-Patch1:		xscorch-0.2.0-non-crazy-scoring--standard.patch.bz2
-Url:		http://chaos2.org/xscorch/
-License:	GPL
+Patch:		xscorch-0.2.0-64bit.patch
+Patch1:		xscorch-0.2.0-non-crazy-scoring--standard.patch
+Patch2:		xscorch-0.2.0-stack-smash.patch
+Url:		http://www.xscorch.org/
+License:	GPLv2+
 Group:		Games/Arcade
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libmikmod-devel gtk+1.2-devel X11-devel libglib-devel libxpm-devel
@@ -26,13 +28,15 @@ power, and you hope to destroy their tank before they destroy yours.
 
 %prep
 %setup -q
+%patch
 %patch1 -p1
+%patch2
 
 %build
 %configure2_5x	--bindir=%{_gamesbindir} \
 		--datadir=%{_gamesdatadir}
 
-%make
+%make LIBS="-lmikmod -lgtk -lm"
 
 %install
 rm -rf %{buildroot}
