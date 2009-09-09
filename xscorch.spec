@@ -1,6 +1,6 @@
 %define	name	xscorch
 %define version 0.2.0
-%define release 6
+%define release 7
 %define	Summary	Clone of Scorched Earth
 
 Summary:	%{Summary}
