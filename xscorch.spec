@@ -1,24 +1,25 @@
 %define	name	xscorch
-%define version 0.2.0
-%define release 7
+%define version 0.2.1
+%define release -c 
 %define	Summary	Clone of Scorched Earth
 
-Summary:	%{Summary}
-Name:		%{name}
-Version:	%{version}
-Release:	%mkrel %{release}
-Source0:	%{name}-%{version}.tar.bz2
+Summary:	Clone of Scorched Earth
+Name:		xscorch
+Version:	0.2.1
+Release:	%mkrel -c pre2 1
+Source0:	http://www.xscorch.org/releases/%{name}-%{version}-pre2.tar.gz
 Source11:	xscorch-16x16.png
 Source12:	xscorch-32x32.png
 Source13:	xscorch-48x48.png
-Patch:		xscorch-0.2.0-64bit.patch
 Patch1:		xscorch-0.2.0-non-crazy-scoring--standard.patch
-Patch2:		xscorch-0.2.0-stack-smash.patch
+Patch3:		xscorch-0.2.1-gtk2.22.patch
+Patch4:		xscorch-0.2.1-link.patch
 Url:		http://www.xscorch.org/
 License:	GPLv2+
 Group:		Games/Arcade
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	libmikmod-devel gtk+1.2-devel X11-devel libglib-devel libxpm-devel
+BuildRequires:	libmikmod-devel
+BuildRequires:	gtk+2-devel
 
 %description 
 Xscorch is a clone of the classic DOS game, "Scorched Earth". The basic goal
@@ -27,16 +28,16 @@ weapons, you target the enemy by adjusting the angle of your turret and firing
 power, and you hope to destroy their tank before they destroy yours.
 
 %prep
-%setup -q
-%patch
+%setup -qn %{name}-%{version}-pre2
 %patch1 -p1
-%patch2
+%patch3 -p0 -b .gtk
+%patch4 -p0 -b .link
 
 %build
 %configure2_5x	--bindir=%{_gamesbindir} \
 		--datadir=%{_gamesdatadir}
 
-%make LIBS="-lmikmod -lgtk -lm"
+%make
 
 %install
 rm -rf %{buildroot}
