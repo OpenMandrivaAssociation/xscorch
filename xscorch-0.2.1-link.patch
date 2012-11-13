@@ -1,0 +1,114 @@
+--- Makefile.am.link	2004-03-11 08:51:51.000000000 +0100
++++ Makefile.am	2011-02-02 06:05:57.000000000 +0100
+@@ -25,7 +25,7 @@
+ 
+ if NETWORK
+ NETWORK_PROGRAM=xscorch-server
+-NETWORK_LD_ADD=$(NET_LIBS) snet/libscorch_net.a snet/tcpnet/libtcpnet.a
++NETWORK_LD_ADD=snet/libscorch_net.a snet/tcpnet/libtcpnet.a $(NET_LIBS)
+ else
+ NETWORK_PROGRAM=
+ NETWORK_LD_ADD=
+@@ -45,35 +45,36 @@
+ xscorch_SOURCES = \
+ 	xscorch.c
+ xscorch_LDADD = \
+-	-lm \
+-	$(GTK_LIBS) \
+-	$(LIBMIKMOD_LIBS) \
+ 	sgame/libscorch_game.a \
+ 	sgtk/libscorch_gtk.a \
+ 	sgtk/swidgets/libscorch_widget_gtk.a \
+ 	sai/libscorch_ai.a \
+-	$(MIKMOD_LD_ADD) \
+-	$(NETWORK_LD_ADD) \
+ 	sutil/libscorch_util.a \
+ 	sgame/libscorch_game.a \
+ 	libj/jreg/libjreg.a \
+-	libj/jstr/libjstr.a
++	libj/jstr/libjstr.a \
++	$(MIKMOD_LD_ADD) \
++	$(NETWORK_LD_ADD) \
++	$(GTK_LIBS) \
++	$(LIBMIKMOD_LIBS) \
++	-lm
++
+ 
+ 
+ xscorch_server_SOURCES = \
+ 	xscorch.c
+ xscorch_server_LDADD = \
+-	-lm \
+-	$(LIBREADLINE_LIBS) \
+ 	sgame/libscorch_game.a \
+ 	sconsole/libscorch_console.a \
+ 	sai/libscorch_ai.a \
+ 	ssound/libscorch_sound_null.a \
+-	$(NETWORK_LD_ADD) \
+ 	sutil/libscorch_util.a \
+ 	sgame/libscorch_game.a \
+ 	libj/jreg/libjreg.a \
+-	libj/jstr/libjstr.a
++	libj/jstr/libjstr.a \
++	$(NETWORK_LD_ADD) \
++	-lm \
++	$(LIBREADLINE_LIBS)
+ 
+ 
+ work-list:
+--- Makefile.in.link	2009-06-01 00:20:43.000000000 +0200
++++ Makefile.in	2011-02-02 06:07:02.000000000 +0100
+@@ -279,42 +279,42 @@
+ @NETWORK_FALSE@NETWORK_PROGRAM = 
+ @NETWORK_TRUE@NETWORK_PROGRAM = xscorch-server
+ @NETWORK_FALSE@NETWORK_LD_ADD = 
+-@NETWORK_TRUE@NETWORK_LD_ADD = $(NET_LIBS) snet/libscorch_net.a snet/tcpnet/libtcpnet.a
++@NETWORK_TRUE@NETWORK_LD_ADD = snet/libscorch_net.a snet/tcpnet/libtcpnet.a $(NET_LIBS)
+ @MIKMOD_FALSE@MIKMOD_LD_ADD = ssound/libscorch_sound_null.a
+ @MIKMOD_TRUE@MIKMOD_LD_ADD = ssound/libscorch_sound.a
+ xscorch_SOURCES = \
+ 	xscorch.c
+ 
+ xscorch_LDADD = \
+-	-lm \
+-	$(GTK_LIBS) \
+-	$(LIBMIKMOD_LIBS) \
+ 	sgame/libscorch_game.a \
+ 	sgtk/libscorch_gtk.a \
+ 	sgtk/swidgets/libscorch_widget_gtk.a \
+ 	sai/libscorch_ai.a \
+-	$(MIKMOD_LD_ADD) \
+-	$(NETWORK_LD_ADD) \
+ 	sutil/libscorch_util.a \
+ 	sgame/libscorch_game.a \
+ 	libj/jreg/libjreg.a \
+-	libj/jstr/libjstr.a
++	libj/jstr/libjstr.a \
++	$(MIKMOD_LD_ADD) \
++	$(NETWORK_LD_ADD) \
++	$(GTK_LIBS) \
++	$(LIBMIKMOD_LIBS) \
++	-lm
+ 
+ xscorch_server_SOURCES = \
+ 	xscorch.c
+ 
+ xscorch_server_LDADD = \
+-	-lm \
+-	$(LIBREADLINE_LIBS) \
+ 	sgame/libscorch_game.a \
+ 	sconsole/libscorch_console.a \
+ 	sai/libscorch_ai.a \
+ 	ssound/libscorch_sound_null.a \
+-	$(NETWORK_LD_ADD) \
+ 	sutil/libscorch_util.a \
+ 	sgame/libscorch_game.a \
+ 	libj/jreg/libjreg.a \
+-	libj/jstr/libjstr.a
++	libj/jstr/libjstr.a \
++	$(NETWORK_LD_ADD) \
++	-lm \
++	$(LIBREADLINE_LIBS)
+ 
+ INCLUDES = -Isgame -Isgtk
+ all: config.h

@@ -1,0 +1,19 @@
+--- xscorch-0.2.0/data/scorings.def.pix	2003-02-28 13:13:25.000000000 +0100
++++ xscorch-0.2.0/data/scorings.def	2004-04-02 11:07:57.344958487 +0200
+@@ -20,12 +20,12 @@
+ Standard = scorings_class {
+    scoringName   = "Standard";
+    description   = "A scoring method that penalizes and awards based on tank damage.";
+-   survivalBonus = 70000;
++   survivalBonus = 10000;
+    damageBonus   = 500;
+-   killBonus     = 30000;
++   killBonus     = 5000;
+    damageLoss    = 250;
+-   deathLoss     = 20000;
+-   suicideLoss   = 100000;
++   deathLoss     = 0;
++   suicideLoss   = 0;
+    fixed         = false;
+ };
+ 

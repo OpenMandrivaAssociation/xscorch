@@ -1,0 +1,77 @@
+--- sgtk/swidgets/sactiveconsole.c.gtk	2009-04-26 19:39:52.000000000 +0200
++++ sgtk/swidgets/sactiveconsole.c	2011-02-02 06:09:50.000000000 +0100
+@@ -408,7 +408,7 @@
+ 
+ static void _sc_active_console_enter_spot(ScActiveConsole *cons, gboolean forceenter) {
+ 
+-   if(!forceenter && !GTK_WIDGET_HAS_FOCUS(GTK_WIDGET(cons))) {
++   if(!forceenter && !gtk_widget_has_focus(GTK_WIDGET(cons))) {
+       return;
+    }
+    if(cons->current != NULL) {
+@@ -421,7 +421,7 @@
+ 
+ static void _sc_active_console_leave_spot(ScActiveConsole *cons, gboolean forceleave) {
+ 
+-   if(!forceleave && !GTK_WIDGET_HAS_FOCUS(GTK_WIDGET(cons))) {
++   if(!forceleave && !gtk_widget_has_focus(GTK_WIDGET(cons))) {
+       return;
+    }
+    if(cons->current != NULL) {
+@@ -1282,7 +1282,7 @@
+    cons->spots = NULL;
+    cons->current = NULL;
+ 
+-   GTK_WIDGET_SET_FLAGS(GTK_WIDGET(cons), GTK_CAN_DEFAULT);
++   gtk_widget_set_can_default (GTK_WIDGET(cons), true);
+    gtk_widget_set_events(GTK_WIDGET(cons), GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
+ 
+ }
+--- sgtk/swidgets/sactoggle.c.gtk	2011-02-02 06:10:01.000000000 +0100
++++ sgtk/swidgets/sactoggle.c	2011-02-02 06:11:00.000000000 +0100
+@@ -69,12 +69,12 @@
+    sc_gadget_get_extents(gadget, &bounds);
+ 
+    /* Find out if this gadget has the focus right now. */
+-   focus = (GTK_WIDGET_HAS_FOCUS(gadget->console) &&
++   focus = (gtk_widget_has_focus(gadget->console) &&
+             (gadget->console->current->data == gadget->spot))
+            ? TRUE : FALSE;
+ 
+    /* Find out if the gadget will be sensitive. */
+-   sensitive = GTK_WIDGET_IS_SENSITIVE(GTK_WIDGET(gadget->console));
++   sensitive = gtk_widget_is_sensitive(GTK_WIDGET(gadget->console));
+ 
+    /* Setup the GC colors for the toggle (drawing outer). */
+    if(!sensitive)
+--- sgtk/swidgets/sdisplay.c.gtk	2009-04-26 19:39:53.000000000 +0200
++++ sgtk/swidgets/sdisplay.c	2011-02-02 06:08:25.000000000 +0100
+@@ -31,7 +31,7 @@
+ 
+    assert(IS_SC_DISPLAY(dpy));
+    dpy->draw = NULL;
+-   GTK_WIDGET_UNSET_FLAGS(GTK_WIDGET(dpy), GTK_CAN_FOCUS);
++   gtk_widget_set_can_focus (GTK_WIDGET(dpy), true);
+    
+ }
+ 
+--- sgtk/swidgets/sdrawbuf.c.gtk	2009-04-26 19:39:53.000000000 +0200
++++ sgtk/swidgets/sdrawbuf.c	2011-02-02 06:11:43.000000000 +0100
+@@ -116,7 +116,7 @@
+ static gint _sc_drawbuf_expose(GtkWidget *widget, GdkEventExpose *event) {
+ 
+    ScDrawbuf *draw = SC_DRAWBUF(widget);
+-   GdkGC *fg_gc = widget->style->fg_gc[GTK_WIDGET_STATE((GtkWidget *)draw)];
++   GdkGC *fg_gc = widget->style->fg_gc[gtk_widget_get_state((GtkWidget *)draw)];
+ 
+    /* Make sure buffer is allocated */
+    g_return_val_if_fail(sc_drawbuf_get_buffer(draw) != NULL, TRUE);
+@@ -156,7 +156,7 @@
+    draw->style_configured = FALSE;
+ 
+    /* Setup widget, and object signals */
+-   GTK_WIDGET_UNSET_FLAGS(GTK_WIDGET(draw), GTK_CAN_FOCUS);
++   gtk_widget_set_can_focus (GTK_WIDGET(draw), false);
+    gtk_widget_add_events(GTK_WIDGET(draw), GDK_EXPOSURE_MASK);
+    gtk_widget_set_app_paintable(GTK_WIDGET(draw), TRUE);
+ 
