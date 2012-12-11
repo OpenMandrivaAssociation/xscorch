@@ -86,3 +86,88 @@ rm -rf %{buildroot}
 %{_datadir}/applications/*
 %doc AUTHORS ChangeLog NEWS README TODO doc/AI doc/NETWORK doc/NOTES
 
+
+
+%changelog
+* Wed Feb 02 2011 Funda Wang <fwang@mandriva.org> 0.2.1-0.pre2.1mdv2011.0
++ Revision: 634976
+- New version 0.2.1 pre2
+- fix linkage and build with newer gtk2.22
+- rediff 64bit patch
+
+* Wed Sep 09 2009 Thierry Vignaud <tv@mandriva.org> 0.2.0-7mdv2010.0
++ Revision: 435277
+- rebuild
+
+* Thu Aug 14 2008 Götz Waschk <waschk@mandriva.org> 0.2.0-6mdv2009.0
++ Revision: 271915
+- add official patches for 64 bit support and for stability
+- update home page
+- update license
+- fix build
+
+  + Pixel <pixel@mandriva.com>
+    - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - drop old menu
+
+* Thu Jan 03 2008 Olivier Blin <oblin@mandriva.com> 0.2.0-5mdv2008.1
++ Revision: 140994
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+    - import xscorch
+
+
+* Fri Aug 25 2006 Per Øyvind Karlsen <pkarlsen@mandriva.com> 0.2.0-5mdv2007.0
+- fix summary macro used in menu item
+- don't archive/bzip2 icons
+- fix macro-in-%%changelog
+- cleanups
+
+* Fri Jul  7 2006 Pixel <pixel@mandriva.com> 0.2.0-4mdv2007.0
+- switch to XDG menu
+
+* Sun Jan 08 2006 Anssi Hannula <anssi@mandriva.org> 0.2.0-3mdk
+- %%mkrel
+- fix menu section
+- fix buildrequires for lib64
+
+* Thu Jun 02 2005 Nicolas Lécureuil <neoclust@mandriva.org> 0.2.0-2mdk
+- Rebuild
+
+* Fri Apr  2 2004 Pixel <pixel@mandrakesoft.com> 0.2.0-1mdk
+- new release
+- bzipped manpage patch not needed anymore (AFAIK the text is builtin the binary)
+- capitalize menu title
+
+* Fri Apr 25 2003 Per Øyvind Karlsen <peroyvind@sintrax.net> 0.1.15-3mdk
+- fixed buildrequires
+
+* Mon Mar 17 2003 Per Øyvind Karlsen <peroyvind@sintrax.net> 0.1.15-2mdk
+- drop obsolete Prefix tag
+- move from %%{_bindir} to %%{_gamesbindir} and from %%{_datadir} to %%{_gamesdatadir}
+- nicer formatting
+- quiet setup
+- don't use configure macro, somehow it made xscorch fail to compile
+- added menuitem and icons
+- added buildrequires
+
+* Thu Jun 27 2002 Pixel <pixel@mandrakesoft.com> 0.1.15-1mdk
+- new release
+
+* Mon Dec 10 2001 Lenny Cartier <lenny@mandrakesoft.com> 0.1.14-1mdk
+- 0.1.14
+- refresh crazy-scoring patch
+
+* Tue Jul 24 2001 Pixel <pixel@mandrakesoft.com> 0.1.13-2mdk
+- non-crazy-scoring--standard
+
+* Tue Jul 24 2001 Pixel <pixel@mandrakesoft.com> 0.1.13-1mdk
+- new version
+- fix description-line-too-long
+
+* Sun Jan 21 2001 Pixel <pixel@mandrakesoft.com> 0.1.10-1mdk
+- initial spec
