@@ -14,7 +14,7 @@ Source13:	xscorch-48x48.png
 Patch1:		xscorch-0.2.0-non-crazy-scoring--standard.patch
 Patch3:		xscorch-0.2.1-gtk2.22.patch
 Patch4:		xscorch-0.2.1-link.patch
-Url:		http://www.xscorch.org/
+Url:		https://www.xscorch.org/
 License:	GPLv2+
 Group:		Games/Arcade
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
