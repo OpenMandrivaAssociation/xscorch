@@ -18,6 +18,11 @@ Url:		https://www.xscorch.org/
 License:	GPLv2+
 Group:		Games/Arcade
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	libmikmod-devel
 BuildRequires:	gtk+2-devel
 
