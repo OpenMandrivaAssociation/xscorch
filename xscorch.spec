@@ -1,12 +1,12 @@
 %define	name	xscorch
 %define version 0.2.1
-%define release -c 
+%define release -c.1
 %define	Summary	Clone of Scorched Earth
 
 Summary:	Clone of Scorched Earth
 Name:		xscorch
 Version:	0.2.1
-Release:	%mkrel -c pre2 1
+Release:	-c pre2 1.1
 Source0:	http://www.xscorch.org/releases/%{name}-%{version}-pre2.tar.gz
 Source11:	xscorch-16x16.png
 Source12:	xscorch-32x32.png
